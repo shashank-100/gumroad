@@ -1,116 +1,39 @@
-import cx from "classnames";
-import * as React from "react";
-import { cast } from "ts-safe-cast";
+import React from "react";
 
-import { escapeRegExp } from "$app/utils";
-import { asyncVoid } from "$app/utils/promise";
-import { assertResponseError, request } from "$app/utils/request";
-
-import { Icon } from "$app/components/Icons";
-import { showAlert } from "$app/components/server-components/Alert";
-import { useOriginalLocation } from "$app/components/useOriginalLocation";
-
-export const NavLink = ({
-  text,
-  icon,
-  badge,
-  href,
-  exactHrefMatch,
-  additionalPatterns = [],
-  onClick,
-}: {
-  text: string;
-  icon?: IconName;
-  badge?: React.ReactNode;
-  href: string;
-  exactHrefMatch?: boolean;
-  additionalPatterns?: string[];
-  onClick?: (ev: React.MouseEvent<HTMLAnchorElement>) => void;
-}) => {
-  const { href: originalHref } = new URL(useOriginalLocation());
-  const ariaCurrent = [href, ...additionalPatterns].some((pattern) => {
-    const escaped = escapeRegExp(pattern);
-    return new RegExp(exactHrefMatch ? `^${escaped}/?$` : escaped, "u").test(originalHref);
-  })
-    ? "page"
-    : undefined;
-
+function Nav() {
   return (
-    <a aria-current={ariaCurrent} href={href} title={text} onClick={onClick} className="flex items-center">
-      {icon ? <Icon name={icon} /> : null}
-      {text}
-      {badge ? (
-        <>
-          <span className="flex-1" />
-          {badge}
-        </>
-      ) : null}
-    </a>
-  );
-};
-
-export const NavLinkDropdownItem = ({
-  text,
-  icon,
-  href,
-  onClick,
-}: {
-  text: string;
-  icon: IconName;
-  href: string;
-  onClick?: (ev: React.MouseEvent<HTMLAnchorElement>) => void;
-}) => (
-  <a role="menuitem" href={href} onClick={onClick}>
-    <Icon name={icon} />
-    {text}
-  </a>
-);
-
-type Props = {
-  children: React.ReactNode;
-  title: string;
-  footer: React.ReactNode;
-  compact?: boolean;
-};
-
-export const Nav = ({ title, children, footer, compact }: Props) => {
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <nav aria-label="Main" className={cx({ compact, open })}>
-      <div className="navbar">
-        <a href={Routes.root_url()}>
-          <span className="logo-g">&nbsp;</span>
-        </a>
-        <h1>{title}</h1>
-        <button className="toggle" onClick={() => setOpen(!open)} />
+    <nav className="bg-white shadow-sm border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex">
+            <div className="flex-shrink-0 flex items-center">
+              <h1 className="text-xl font-bold">Gumroad</h1>
+            </div>
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a href="/dashboard" className="text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+                Dashboard
+              </a>
+              <a href="/analytics" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+                Analytics
+              </a>
+              <a href="/balance" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+                Balance
+              </a>
+              <a href="/collaborators" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+                Collaborators
+              </a>
+              <a href="/customers" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+                Customers
+              </a>
+              <a href="/products" className="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+                Products
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <header>
-        <a href={Routes.root_url()} aria-label="Dashboard">
-          <span className="logo-full">&nbsp;</span>
-        </a>
-      </header>
-      {children}
-      <footer>{footer}</footer>
     </nav>
   );
-};
+}
 
-export const UnbecomeDropdownItem = () => {
-  const makeRequest = asyncVoid(async (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    ev.preventDefault();
-
-    try {
-      const response = await request({ method: "DELETE", accept: "json", url: Routes.admin_unimpersonate_path() });
-      if (response.ok) {
-        const responseData = cast<{ redirect_to: string }>(await response.json());
-        window.location.href = responseData.redirect_to;
-      }
-    } catch (e) {
-      assertResponseError(e);
-      showAlert("Something went wrong.", "error");
-    }
-  });
-
-  return <NavLinkDropdownItem text="Unbecome" icon="box-arrow-in-right-fill" href="#" onClick={makeRequest} />;
-};
+export default Nav;

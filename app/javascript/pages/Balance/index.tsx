@@ -1,6 +1,6 @@
 import React from "react";
 
-export function BalancePage() {
+function Balance() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Balance</h1>
@@ -10,3 +10,5 @@ export function BalancePage() {
     </div>
   );
 }
+
+export default Balance;

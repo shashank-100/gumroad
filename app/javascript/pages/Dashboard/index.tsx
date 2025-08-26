@@ -1,6 +1,6 @@
 import React from "react";
 
-export function DashboardPage() {
+function Dashboard() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
@@ -25,3 +25,5 @@ export function DashboardPage() {
     </div>
   );
 }
+
+export default Dashboard;
