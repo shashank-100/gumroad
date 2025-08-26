@@ -735,6 +735,9 @@ Rails.application.routes.draw do
     get "/dashboard/monthly_recurring_revenue" => "dashboard#monthly_recurring_revenue", as: :dashboard_monthly_recurring_revenue
     get "/dashboard/download_tax_form" => "dashboard#download_tax_form", as: :dashboard_download_tax_form
 
+    # Dashboard SPA routes - all dashboard routes handled by React Router
+    get "/dashboard/*other", to: "dashboard#index"
+
     get "/products", to: "links#index", as: :products
     get "/l/:id", to: "links#show", defaults: { format: "html" }, as: :short_link
     get "/l/:id/:code", to: "links#show", defaults: { format: "html" }, as: :short_link_offer_code
