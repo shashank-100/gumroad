@@ -89,6 +89,8 @@ module Gumroad
 
     config.hosts = nil
 
+    config.mongoid.logger.level = Logger::INFO
+
     config.active_storage.queues.purge = :low
 
     config.flipper.strict = false

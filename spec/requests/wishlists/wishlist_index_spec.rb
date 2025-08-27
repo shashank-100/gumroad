@@ -31,7 +31,9 @@ describe "Wishlist index page", :js, type: :system do
     visit wishlists_path
 
     within find(:table_row, { "Name" => wishlist.name }) do
-      find("button[aria-label='Delete wishlist']").click
+      select_disclosure "Actions" do
+        click_on "Delete"
+      end
     end
 
     click_on "Yes, delete"

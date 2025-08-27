@@ -9,6 +9,7 @@ import { Button } from "$app/components/Button";
 import { Icon } from "$app/components/Icons";
 import { Layout } from "$app/components/Library/Layout";
 import { Modal } from "$app/components/Modal";
+import { Popover } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Toggle } from "$app/components/Toggle";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -115,14 +116,13 @@ const WishlistsPage = ({
                   </td>
                   <td>
                     <div className="actions">
-                      <Button
-                        color="danger"
-                        outline
-                        aria-label="Delete wishlist"
-                        onClick={() => setConfirmingDeleteWishlist(wishlist)}
-                      >
-                        <Icon name="trash2" />
-                      </Button>
+                      <Popover aria-label="Actions" trigger={<Icon name="three-dots" />}>
+                        <div role="menu">
+                          <div role="menuitem" className="danger" onClick={() => setConfirmingDeleteWishlist(wishlist)}>
+                            <Icon name="trash2" /> Delete
+                          </div>
+                        </div>
+                      </Popover>
                     </div>
                   </td>
                 </tr>

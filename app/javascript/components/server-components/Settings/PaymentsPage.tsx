@@ -1047,7 +1047,6 @@ const PaymentsPage = (props: Props) => {
                 feeInfoText={props.fee_info.paypal_fee_info_text}
                 updatePayoutMethod={updatePayoutMethod}
                 errorFieldNames={errorFieldNames}
-                user={props.user}
               />
             ) : null}
             {selectedPayoutMethod !== "stripe" ? (
