@@ -198,5 +198,3 @@ group :development do
   gem "derailed_benchmarks", "~> 2.1"
   gem "bullet"
 end
-
-gem "inertia_rails", "~> 3.10"

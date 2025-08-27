@@ -1,2 +1,3 @@
-import "@inertiajs/react";
-import "./inertia/app_wrapper";
+import BasePage from "$app/utils/base_page";
+
+BasePage.initialize();
