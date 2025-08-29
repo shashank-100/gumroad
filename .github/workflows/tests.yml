@@ -223,47 +223,6 @@ jobs:
           docker run --rm --network ${{ env.COMPOSE_PROJECT_NAME }}_default \
             -e RAILS_ENV=test \
             -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
-            -e STRIPE_SECRET_KEY=dummy \
-            -e STRIPE_PUBLISHABLE_KEY=dummy \
-            -e STRIPE_WEBHOOK_SECRET=dummy \
-            -e STRIPE_CONNECT_ACCOUNT_ID=dummy \
-            -e STRIPE_MERCHANT_ACCOUNT_ID=dummy \
-            -e STRIPE_MERCHANT_ID=dummy \
-            -e PAYPAL_CLIENT_ID=dummy \
-            -e PAYPAL_CLIENT_SECRET=dummy \
-            -e PAYPAL_CONNECT_ACCOUNT_ID=dummy \
-            -e PAYPAL_MERCHANT_ACCOUNT_ID=dummy \
-            -e PAYPAL_MERCHANT_ID=dummy \
-            -e BRAINTREE_MERCHANT_ACCOUNT_ID=dummy \
-            -e AWS_ACCESS_KEY_ID=dummy \
-            -e AWS_SECRET_ACCESS_KEY=dummy \
-            -e AWS_DEFAULT_REGION=us-east-1 \
-            -e SENDGRID_API_KEY=dummy \
-            -e DROPBOX_ACCESS_TOKEN=dummy \
-            -e EASYPOST_API_KEY=dummy \
-            -e VATSTACK_API_KEY=dummy \
-            -e TAXJAR_API_KEY=dummy \
-            -e TAX_ID_PRO_API_KEY=dummy \
-            -e CIRCLE_API_KEY=dummy \
-            -e OPEN_EXCHANGE_RATES_API_KEY=dummy \
-            -e UNSPLASH_ACCESS_KEY=dummy \
-            -e DISCORD_BOT_TOKEN=dummy \
-            -e ZOOM_JWT_TOKEN=dummy \
-            -e GOOGLE_CALENDAR_CREDENTIALS=dummy \
-            -e OPENAI_API_KEY=dummy \
-            -e GOOGLE_API_KEY=dummy \
-            -e TWITTER_BEARER_TOKEN=dummy \
-            -e IRAS_API_KEY=dummy \
-            -e CLOUDFRONT_PRIVATE_KEY=dummy \
-            -e BUGSNAG_API_KEY=dummy \
-            -e PUSH_NOTIFICATION_API_KEY=dummy \
-            -e WEBHOOK_SECRET=dummy \
-            -e SPEC_API_KEY=dummy \
-            -e APPLE_TEAM_ID=dummy \
-            -e APPLE_KEY_ID=dummy \
-            -e APPLE_PRIVATE_KEY=dummy \
-            -e ENVIRONMENT=test \
-            -e ENVIRONMENT_IDENTIFIER=dummy \
             $WEB_REPO:test-${{ github.sha }} \
             bundle exec rake db:setup
 
@@ -291,47 +250,6 @@ jobs:
             -e S3_DELETER_SECRET_ACCESS_KEY=${{ secrets.S3_DELETER_SECRET_ACCESS_KEY }} \
             -e CI=true \
             -e IN_DOCKER=true \
-            -e STRIPE_SECRET_KEY=dummy \
-            -e STRIPE_PUBLISHABLE_KEY=dummy \
-            -e STRIPE_WEBHOOK_SECRET=dummy \
-            -e STRIPE_CONNECT_ACCOUNT_ID=dummy \
-            -e STRIPE_MERCHANT_ACCOUNT_ID=dummy \
-            -e STRIPE_MERCHANT_ID=dummy \
-            -e PAYPAL_CLIENT_ID=dummy \
-            -e PAYPAL_CLIENT_SECRET=dummy \
-            -e PAYPAL_CONNECT_ACCOUNT_ID=dummy \
-            -e PAYPAL_MERCHANT_ACCOUNT_ID=dummy \
-            -e PAYPAL_MERCHANT_ID=dummy \
-            -e BRAINTREE_MERCHANT_ACCOUNT_ID=dummy \
-            -e AWS_ACCESS_KEY_ID=dummy \
-            -e AWS_SECRET_ACCESS_KEY=dummy \
-            -e AWS_DEFAULT_REGION=us-east-1 \
-            -e SENDGRID_API_KEY=dummy \
-            -e DROPBOX_ACCESS_TOKEN=dummy \
-            -e EASYPOST_API_KEY=dummy \
-            -e VATSTACK_API_KEY=dummy \
-            -e TAXJAR_API_KEY=dummy \
-            -e TAX_ID_PRO_API_KEY=dummy \
-            -e CIRCLE_API_KEY=dummy \
-            -e OPEN_EXCHANGE_RATES_API_KEY=dummy \
-            -e UNSPLASH_ACCESS_KEY=dummy \
-            -e DISCORD_BOT_TOKEN=dummy \
-            -e ZOOM_JWT_TOKEN=dummy \
-            -e GOOGLE_CALENDAR_CREDENTIALS=dummy \
-            -e OPENAI_API_KEY=dummy \
-            -e GOOGLE_API_KEY=dummy \
-            -e TWITTER_BEARER_TOKEN=dummy \
-            -e IRAS_API_KEY=dummy \
-            -e CLOUDFRONT_PRIVATE_KEY=dummy \
-            -e BUGSNAG_API_KEY=dummy \
-            -e PUSH_NOTIFICATION_API_KEY=dummy \
-            -e WEBHOOK_SECRET=dummy \
-            -e SPEC_API_KEY=dummy \
-            -e APPLE_TEAM_ID=dummy \
-            -e APPLE_KEY_ID=dummy \
-            -e APPLE_PRIVATE_KEY=dummy \
-            -e ENVIRONMENT=test \
-            -e ENVIRONMENT_IDENTIFIER=dummy \
             $WEB_REPO:test-${{ github.sha }} \
             /usr/local/bin/gosu app bundle exec rake "knapsack_pro:queue:rspec[--format RSpec::Github::Formatter --tag ~skip --format progress]"
         timeout-minutes: 15
@@ -431,29 +349,11 @@ jobs:
         env:
           WEB_REPO: quay.io/gumroad/web
         run: |
-                      docker run --rm --network ${{ env.COMPOSE_PROJECT_NAME }}_default \
-              -e RAILS_ENV=test \
-              -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
-              -e STRIPE_SECRET_KEY=dummy \
-              -e STRIPE_PUBLISHABLE_KEY=dummy \
-              -e STRIPE_WEBHOOK_SECRET=dummy \
-              -e STRIPE_CONNECT_ACCOUNT_ID=dummy \
-              -e STRIPE_MERCHANT_ACCOUNT_ID=dummy \
-              -e STRIPE_MERCHANT_ID=dummy \
-              -e PAYPAL_CLIENT_ID=dummy \
-              -e PAYPAL_CLIENT_SECRET=dummy \
-              -e PAYPAL_CONNECT_ACCOUNT_ID=dummy \
-              -e PAYPAL_MERCHANT_ACCOUNT_ID=dummy \
-              -e PAYPAL_MERCHANT_ID=dummy \
-              -e BRAINTREE_MERCHANT_ACCOUNT_ID=dummy \
-              -e AWS_ACCESS_KEY_ID=dummy \
-              -e AWS_SECRET_ACCESS_KEY=dummy \
-              -e AWS_DEFAULT_REGION=us-east-1 \
-              -e STRONGBOX_GENERAL_PASSWORD=dummy \
-              -e OBFUSCATE_IDS_CIPHER_KEY=dummy \
-              -e OBFUSCATE_IDS_NUMERIC_CIPHER_KEY=dummy \
-              $WEB_REPO:test-${{ github.sha }} \
-              bundle exec rake db:setup
+          docker run --rm --network ${{ env.COMPOSE_PROJECT_NAME }}_default \
+            -e RAILS_ENV=test \
+            -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
+            $WEB_REPO:test-${{ github.sha }} \
+            bundle exec rake db:setup
 
       - name: Run tests
         uses: nick-fields/retry@v3
@@ -472,24 +372,6 @@ jobs:
             docker run --rm --network ${{ env.COMPOSE_PROJECT_NAME }}_default \
               -e RAILS_ENV=test \
               -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
-              -e STRIPE_SECRET_KEY=dummy \
-              -e STRIPE_PUBLISHABLE_KEY=dummy \
-              -e STRIPE_WEBHOOK_SECRET=dummy \
-              -e STRIPE_CONNECT_ACCOUNT_ID=dummy \
-              -e STRIPE_MERCHANT_ACCOUNT_ID=dummy \
-              -e STRIPE_MERCHANT_ID=dummy \
-              -e PAYPAL_CLIENT_ID=dummy \
-              -e PAYPAL_CLIENT_SECRET=dummy \
-              -e PAYPAL_CONNECT_ACCOUNT_ID=dummy \
-              -e PAYPAL_MERCHANT_ACCOUNT_ID=dummy \
-              -e PAYPAL_MERCHANT_ID=dummy \
-              -e BRAINTREE_MERCHANT_ACCOUNT_ID=dummy \
-              -e AWS_ACCESS_KEY_ID=dummy \
-              -e AWS_SECRET_ACCESS_KEY=dummy \
-              -e AWS_DEFAULT_REGION=us-east-1 \
-              -e STRONGBOX_GENERAL_PASSWORD=dummy \
-              -e OBFUSCATE_IDS_CIPHER_KEY=dummy \
-              -e OBFUSCATE_IDS_NUMERIC_CIPHER_KEY=dummy \
               $WEB_REPO:test-${{ github.sha }} \
               bundle exec rake db:setup
           command: |
@@ -512,49 +394,8 @@ jobs:
               -e S3_DELETER_SECRET_ACCESS_KEY=${{ secrets.S3_DELETER_SECRET_ACCESS_KEY }} \
               -e CI=true \
               -e IN_DOCKER=true \
-              -e STRIPE_SECRET_KEY=dummy \
-              -e STRIPE_PUBLISHABLE_KEY=dummy \
-              -e STRIPE_WEBHOOK_SECRET=dummy \
-              -e STRIPE_CONNECT_ACCOUNT_ID=dummy \
-              -e STRIPE_MERCHANT_ACCOUNT_ID=dummy \
-              -e STRIPE_MERCHANT_ID=dummy \
-              -e PAYPAL_CLIENT_ID=dummy \
-              -e PAYPAL_CLIENT_SECRET=dummy \
-              -e PAYPAL_CONNECT_ACCOUNT_ID=dummy \
-              -e PAYPAL_MERCHANT_ACCOUNT_ID=dummy \
-              -e PAYPAL_MERCHANT_ID=dummy \
-              -e BRAINTREE_MERCHANT_ACCOUNT_ID=dummy \
-              -e AWS_ACCESS_KEY_ID=dummy \
-              -e AWS_SECRET_ACCESS_KEY=dummy \
-                            -e AWS_DEFAULT_REGION=us-east-1 \
-              -e SENDGRID_API_KEY=dummy \
-            -e DROPBOX_ACCESS_TOKEN=dummy \
-            -e EASYPOST_API_KEY=dummy \
-            -e VATSTACK_API_KEY=dummy \
-            -e TAXJAR_API_KEY=dummy \
-            -e TAX_ID_PRO_API_KEY=dummy \
-            -e CIRCLE_API_KEY=dummy \
-            -e OPEN_EXCHANGE_RATES_API_KEY=dummy \
-            -e UNSPLASH_ACCESS_KEY=dummy \
-            -e DISCORD_BOT_TOKEN=dummy \
-            -e ZOOM_JWT_TOKEN=dummy \
-            -e GOOGLE_CALENDAR_CREDENTIALS=dummy \
-            -e OPENAI_API_KEY=dummy \
-            -e GOOGLE_API_KEY=dummy \
-            -e TWITTER_BEARER_TOKEN=dummy \
-            -e IRAS_API_KEY=dummy \
-            -e CLOUDFRONT_PRIVATE_KEY=dummy \
-            -e BUGSNAG_API_KEY=dummy \
-            -e PUSH_NOTIFICATION_API_KEY=dummy \
-            -e WEBHOOK_SECRET=dummy \
-            -e SPEC_API_KEY=dummy \
-            -e APPLE_TEAM_ID=dummy \
-            -e APPLE_KEY_ID=dummy \
-            -e APPLE_PRIVATE_KEY=dummy \
-            -e ENVIRONMENT=test \
-            -e ENVIRONMENT_IDENTIFIER=dummy \
-            $WEB_REPO:test-${{ github.sha }} \
-            /usr/local/bin/gosu app bundle exec rake "knapsack_pro:queue:rspec[--format RSpec::Github::Formatter --tag ~skip --format progress]"
+              $WEB_REPO:test-${{ github.sha }} \
+              /usr/local/bin/gosu app bundle exec rake "knapsack_pro:queue:rspec[--format RSpec::Github::Formatter --tag ~skip --format progress]"
       - name: Clean up
         if: always()
         run: |
